@@ -4,7 +4,12 @@ extern crate text_io;
 
 fn main() {
     loop {
-        println!("enter space separated ops (\n\tadd:\t[+n]\tsub:\t[-n]\n\tmul:\t[xn]\tdiv:\t[/n]\n\tlshift:\t[<]\t\trshift:\t[>n]\n\treplace:[:a,b]\tsquare:\t[^]\n\tneg:\t[$]\n):");
+        println!("enter space separated ops");
+        println!("{0: <9} {1: <7} {2: <9} {3: <5}", "add:", "[+n]", "sub:", "[-n]");
+        println!("{0: <9} {1: <7} {2: <9} {3: <5}", "mul:", "[xn]", "div:", "[/n]");
+        println!("{0: <9} {1: <7} {2: <9} {3: <5}", "lshift:", "[<]", "rshift:", "[>n]");
+        println!("{0: <9} {1: <7} {2: <9} {3: <5}", "replace:", "[:a,b]", "square:", "[^]");
+        println!("{0: <9} {1: <7} {2: <9} {3: <5}", "neg:", "[!]", "", "");
         let ops_string: String = read!("{}\n");
         println!("read: {}", ops_string);
         let ops = op_vec_from_str(&ops_string);
@@ -83,7 +88,7 @@ fn op_from_str(s: &str) -> Op {
             Replace(x, y)
         }
         '^' => Raise(2),
-        '$' => Negate,
+        '!' => Negate,
         _ => panic!()
     }
 }
