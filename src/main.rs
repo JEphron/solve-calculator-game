@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate text_io;
 
-use std::str::FromStr;
 
 fn main() {
     loop {
@@ -18,7 +17,7 @@ fn main() {
         let iter_limit = 100_000_000;
 
         match solve(ops, starting_value, moves, goal, iter_limit) {
-            Some(mut path) => println!("Solution: {:?}", path),
+            Some(path) => println!("Solution: {:?}", path),
             None => println!("no solution found")
         }
     }
@@ -57,7 +56,7 @@ impl Op {
                 let string: String = arg.to_string();
                 let string = string.replace(&x.to_string(), &y.to_string());
                 string.parse().unwrap()
-            },
+            }
             Raise(exponent) => arg.powi(exponent),
             Negate => -arg
         }
@@ -82,7 +81,7 @@ fn op_from_str(s: &str) -> Op {
             let y = xy[1].parse().unwrap();
             println!("{}, {}", x, y);
             Replace(x, y)
-        },
+        }
         '^' => Raise(2),
         '$' => Negate,
         _ => panic!()
@@ -127,10 +126,11 @@ fn solve(ops: Vec<Op>, starting_value: f32, max_moves: i32, goal: f32, iter_limi
                 let mut solution = Vec::new();
                 let mut head = Box::new(current);
                 while head.parent.is_some() {
-                    solution.push((head.value,head.op));
+                    solution.push((head.value, head.op));
                     head = head.parent.unwrap();
                 }
-                println!("finished in {} iterations", i);return Some(solution);
+                println!("finished in {} iterations", i);
+                return Some(solution);
             } else {
                 continue;
             }
