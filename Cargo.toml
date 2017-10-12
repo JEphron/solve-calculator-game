@@ -1,0 +1,8 @@
+[package]
+name = "solve-calculator-game"
+version = "0.1.0"
+authors = ["JEphron <jephron63@gmail.com>"]
+
+[dependencies]
+text_io = "0.1.6"
+
